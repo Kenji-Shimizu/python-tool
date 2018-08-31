@@ -1,0 +1,38 @@
+path_w = 'primelist.txt'
+
+
+
+primelist=["2"]
+primeset=set([2])
+
+for i in range(3,100000+1):
+    primeflag=1
+    for j in primelist:
+        if i % int(j) ==0:
+            primeflag=0
+            break
+    if primeflag==1:
+        primelist.append(str(i))
+        primeset.add(i)
+
+
+
+print(primelist)
+f = open(path_w, 'w')
+for x in primelist:
+    f.write(str(x) + "\n")
+f.close()
+
+f = open(path_w,"r")
+primelist = []
+primeset=set()
+
+for x in f:
+    primelist.append(x.rstrip("\n"))
+    #以下のようにしてしまうと、改行コードがlistに入ってしまうため注意
+    #list.append(x)
+    primeset.add(x.rstrip("\n"))
+f.close()
+
+print(primelist)
+print(primeset)
